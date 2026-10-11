@@ -84,6 +84,7 @@ movies = [
 ]
 
 
+# Этап 1
 def average_rating(movies):
     total_rating = sum(movie["rating"] for movie in movies)
     return round(total_rating / len(movies), 1)
@@ -101,6 +102,7 @@ def duration_in_hours(minutes):
     return f"{hours}ч {remaining_minutes}м"
 
 
+# Этап 2
 def rating_tier(rating):
     if rating >= 9:
         return "шедевр"
@@ -120,6 +122,7 @@ def decade_label(year):
             return "старые"
 
 
+# Этап 3
 def print_non_comedy_titles(movies):
     for movie in movies:
         if "comedy" in movie["genres"]:
@@ -147,6 +150,7 @@ def count_long_movies(movies, threshold=120):
     return count
 
 
+# Этап 4
 def normalize_title(title):
     words = title.split()
     normalized_words = []
@@ -167,3 +171,22 @@ def format_report_line(movie):
         f'"{title}" ({movie["year"]}) — {movie["rating"]}/10, '
         f"{duration}, жанры: {genres}"
     )
+
+
+# Этап 5
+def titles_sorted_by_rating(movies):
+    sorted_movies = sorted(
+        movies,
+        key=lambda movie: movie["rating"],
+        reverse=True,
+    )
+    return [movie["title"] for movie in sorted_movies]
+
+
+def top_n_by_rating(movies, n=3):
+    sorted_movies = sorted(
+        movies,
+        key=lambda movie: movie["rating"],
+        reverse=True,
+    )
+    return [(movie["title"], movie["rating"]) for movie in sorted_movies[:n]]
