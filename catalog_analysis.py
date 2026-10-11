@@ -218,3 +218,23 @@ def ratings_above_average(movies):
         for movie in movies
         if movie["rating"] > catalog_average
     }
+
+
+# Этап 7
+def all_genres(movies):
+    genres = set()
+    for movie in movies:
+        genres.update(movie["genres"])
+    return genres
+
+
+def common_actors(movie1, movie2):
+    first_movie_actors = set(movie1["actors"])
+    second_movie_actors = set(movie2["actors"])
+    return first_movie_actors & second_movie_actors
+
+
+def genres_only_in_one(movies_a, movies_b):
+    genres_a = all_genres(movies_a)
+    genres_b = all_genres(movies_b)
+    return genres_a - genres_b
